@@ -12,7 +12,7 @@ This little repo describes my explorations.
 Read the spec for full details, these are just some things I found interesting.
 
 === ISO-8859-1 encoding
-The spec says `name` and `comment` fields are to be encoded in ISO-8859-1.
+The spec says `original file name` and `file comment` fields are to be encoded in ISO-8859-1.
 I wonder if in these UNICODE days, folks adhere to this.
 
 === original file name field
@@ -29,7 +29,7 @@ $ ls
 bar.txt  bar.txt.gz
 ----
 
-Restoring the original file name can be forced via `--name`.
+Restoring the `original file name` can be forced via `--name`.
 
 [source,shell]
 ----
@@ -62,7 +62,7 @@ But we cannot assume only 1 link:#member[member] in a gzip file.
 === Java API
 Java includes support for compressing and decompressing gzip files.
 The API works at the stream level.
-I does not populate or give access to any of the optional gzip fields including `name`.
+I does not populate or give access to any of the optional gzip fields including `original file name`.
 It populates the `os` field with `255` which means `unkown`.
 
 [[member]]
@@ -88,7 +88,7 @@ foo
 bar
 ----
 
-And if we try to preserve the filename? Seems like the `gzip` command uses the first member:
+And if we try to preserve the `original file name`? Seems like the `gzip` command uses the first member:
 [source,shell]
 ----
 $ rm foo
@@ -99,6 +99,8 @@ $ cat foo.txt
 foo
 bar
 ----
+
+I assume storing multiple members in a single gzip file is rare.
 
 == Explorations
 
